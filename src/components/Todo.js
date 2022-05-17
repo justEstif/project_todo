@@ -1,12 +1,13 @@
 import React from "react";
 
-function Todo() {
+function Todo(props) {
+  const { name, completed, id } = props
   return (
-    <li className="todo stack-small">
+    <li key={id} className="todo stack-small">
       <div className="c-cb">
-        <input id="todo-0" type="checkbox" defaultChecked={true} />
-        <label className="todo-label" htmlFor="todo-0">
-          Eat
+        <input id={id} type="checkbox" defaultChecked={completed} />
+        <label className="todo-label" htmlFor={id}>
+          {name}
         </label>
       </div>
       <div className="btn-group">
