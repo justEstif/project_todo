@@ -1,3 +1,28 @@
+// src/index.js
+import { initializeApp } from "firebase/app";
+import { getFirestore, doc, getDoc } from "firebase/firestore/lite";
+
+const firebaseApp = initializeApp({
+  /* config */
+  apiKey: "AIzaSyCVhc-NNhyudS0w_jmXhQQfbiTb7mza6S0",
+  authDomain: "todo-93df6.firebaseapp.com",
+  projectId: "todo-93df6",
+  storageBucket: "todo-93df6.appspot.com",
+  messagingSenderId: "357623839087",
+  appId: "1:357623839087:web:5dd29f2ef13a4f73a0509a",
+  measurementId: "G-MLLEMXRWY6",
+});
+const db = getFirestore(firebaseApp);
+
+async function loadCity(name) {
+  const cityDoc = doc(db, `cities/${name}`);
+  const snapshot = await getDoc(cityDoc);
+  return {
+    id: snapshot.id,
+    ...snapshot.data(),
+  };
+}
+
 const listsContainer = document.querySelector("[data-lists]");
 const newListForm = document.querySelector("[data-new-list-form]");
 const newListInput = document.querySelector("[data-new-list-input]");
